@@ -25,6 +25,12 @@ public class Normal extends State {
 		this.rentlimit = rentlimit;
 	}
 
+
+	//返却が完了したときにStaffから呼び出される
+	//前提：本は一冊ずつ返す
+	public void returnRentlimit(){
+		this.rentlimit = (this.rentlimit > 2)? 3: this.rentlimit+1;
+	}
 	/**
 	 * @uml.property  name="deadline"
 	 */
@@ -68,7 +74,15 @@ public class Normal extends State {
 	 * @uml.property  name="fine"
 	 */
 	public void setFine(int fine) {
-		this.fine = fine;
-	}
+		this.fine += fine;
+	}//一応積算される
+	public void resetFine(){this.fine = 0;	}//全部払った
 
+	@Override
+	public void rentBook(Long isbn, Booklist booklist) {
+		if (booklist.getStockList(isbn) != 0){//Stocklistが1ならほんは未貸し出し
+			booklist.operateStockList(isbn,1);//Stocklistの対応するキーを１減らす
+			booklist.addDeadlineList(isbn,this.deadline);//期限を追加
+		}
+	}
 }

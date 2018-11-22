@@ -2,16 +2,22 @@
 
 public abstract class State {
 
-		
-			
-			
-			public void rentBook(){
-			}
+	private int rentlimit;
+	//public abstract void returnRentlimit();
 
-			/**
-			 * @uml.property  name="rentlimit"
-			 */
-			private int rentlimit;
+	public abstract void rentBook(Long isbn, Booklist booklist);
+
+
+	public String h_searchBook(Long isbn, Booklist booklist){//IDで検索
+		if(booklist.containsKeytitleList(isbn)){
+			return "match >>> "+ booklist.getTitleList(isbn) + " at " + booklist.getAddressList(isbn)+"\n";
+		}
+		else{
+			return "no matches... please request";
+		}
+	}
+
+
 
 			/**
 			 * Getter of the property <tt>rentlimit</tt>
@@ -20,15 +26,6 @@ public abstract class State {
 			 */
 			public int getRentlimit() {
 				return rentlimit;
-			}
-
-			/**
-			 * Setter of the property <tt>rentlimit</tt>
-			 * @param rentlimit  The rentlimit to set.
-			 * @uml.property  name="rentlimit"
-			 */
-			public void setRentlimit(int rentlimit) {
-				this.rentlimit = rentlimit;
 			}
 
 			/**
@@ -55,57 +52,57 @@ public abstract class State {
 				this.member = member;
 			}
 
-				
-				/**
-				 */
-				public int deadline(){
-					return 0;
-				}
 
-				/**
-				 * @uml.property  name="deadline"
-				 */
-				private int deadline;
+			/**
+			 */
+			public int deadline(){
+				return 0;
+			}
 
-				/**
-				 * Getter of the property <tt>deadline</tt>
-				 * @return  Returns the deadline.
-				 * @uml.property  name="deadline"
-				 */
-				public int getDeadline() {
-					return deadline;
-				}
+			/**
+			 * @uml.property  name="deadline"
+			 */
+			private int deadline;
 
-				/**
-				 * Setter of the property <tt>deadline</tt>
-				 * @param deadline  The deadline to set.
-				 * @uml.property  name="deadline"
-				 */
-				public void setDeadline(int deadline) {
-					this.deadline = deadline;
-				}
+			/**
+			 * Getter of the property <tt>deadline</tt>
+			 * @return  Returns the deadline.
+			 * @uml.property  name="deadline"
+			 */
+			public int getDeadline() {
+				return deadline;
+			}
 
-				/**
-				 * @uml.property  name="fine"
-				 */
-				public int fine;
+			/**
+			 * Setter of the property <tt>deadline</tt>
+			 * @param deadline  The deadline to set.
+			 * @uml.property  name="deadline"
+			 */
+			public void setDeadline(int deadline) {
+				this.deadline = deadline;
+			}
 
-				/**
-				 * Getter of the property <tt>fine</tt>
-				 * @return  Returns the fine.
-				 * @uml.property  name="fine"
-				 */
-				public int getFine() {
-					return fine;
-				}
+			/**
+			 * @uml.property  name="fine"
+			 */
+			public int fine;
 
-				/**
-				 * Setter of the property <tt>fine</tt>
-				 * @param fine  The fine to set.
-				 * @uml.property  name="fine"
-				 */
-				public void setFine(int fine) {
-					this.fine = fine;
-				}
+			/**
+			 * Getter of the property <tt>fine</tt>
+			 * @return  Returns the fine.
+			 * @uml.property  name="fine"
+			 */
+			public int getFine() {
+				return fine;
+			}
+
+			/**
+			 * Setter of the property <tt>fine</tt>
+			 * @param fine  The fine to set.
+			 * @uml.property  name="fine"
+			 */
+			public void setFine(int fine) {
+				this.fine = fine;
+			}
 
 }

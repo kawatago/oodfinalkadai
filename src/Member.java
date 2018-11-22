@@ -200,24 +200,5 @@ public class Member {
 		 * @uml.property  name="test"
 		 * @uml.associationEnd  aggregation="shared" inverse="member:test"
 		 */
-		private test test;
-
-		/**
-		 * Getter of the property <tt>test</tt>
-		 * @return  Returns the test.
-		 * @uml.property  name="test"
-		 */
-		public test getTest() {
-			return test;
-		}
-
-		/**
-		 * Setter of the property <tt>test</tt>
-		 * @param test  The test to set.
-		 * @uml.property  name="test"
-		 */
-		public void setTest(test test) {
-			this.test = test;
-		}
 
 }
