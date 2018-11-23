@@ -64,19 +64,22 @@ public class Booklist {
 
 	public void operateStockList(String isbn, int i){
 		int temp = stockList.get(isbn);
+		System.out.println("before:"+ stockList.get(isbn));
 		stockList.put(isbn, temp + i);
-		System.out.println("result:"+ stockList.get(isbn));
+		System.out.println("after:"+ stockList.get(isbn));
 	}
 
 	public void addDeadlineList(String isbn, int offset){
 		Calendar rental_date = Calendar.getInstance();
+		System.out.println("today is " + rental_date.get(Calendar.DATE));
 		rental_date.add(Calendar.DATE,offset);
 		//deadlineに追加
 		deadlineList.put(isbn,rental_date);
-		System.out.println("deadline is:" + deadlineList.get(isbn));
+		System.out.println("deadline is:" + rental_date.get(Calendar.DATE));
 	}
 	public void addrequestList(String isbn){
 		requestList.add(isbn);
+		System.out.println("added:"+requestList.get(requestList.size()-1));
 	}
 
 }

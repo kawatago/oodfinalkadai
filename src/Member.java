@@ -173,6 +173,11 @@ public class Member {
 		private int return_process(String isbn, int id){
 			return staff.returnbook(isbn, IDtoPerson(id), booklist);
 		}
+		private void request(String isbn, int id){
+			State state = IDtoPerson(id);
+			System.out.println("user:"+ state.getName());
+			state.requestBook(isbn,booklist);
+		}
 
 		//addMemberでリストに新しいメンバーを追加し、ステータスを設定
 		public void addMember(String Name, String Address){//新しい会員を登録する
@@ -187,9 +192,15 @@ public class Member {
 			Member m1 = new Member();
 			m1.addMember("sample1", "tokyo");//会員1を追加
 			m1.addMember("sample2", "tokyo");//会員2を追加
-			m1.rent("1", 0);//id:0の人がisbn:1の本を借りる
-			m1.rent("1", 1);//id:1の人がisbn:1の本を借り(ようとす)る
-			m1.return_process("1", 0);//返却時に当人が会員証を持ってカウンターにいる
-			m1.rent("1", 1);//id:1の人がisbn:1の本を借りる
+			//同じ本は借りれない
+//			m1.rent("1", 0);//id:0の人がisbn:1の本を借りる
+//			m1.rent("1", 1);//id:1の人がisbn:1の本を借り(ようとす)る
+//			m1.return_process("1", 0);//返却時に当人が会員証を持ってカウンターにいる
+//			m1.rent("1", 1);//id:1の人がisbn:1の本を借りる
+			//リクエストはだれでもできる
+			m1.addMember("nonmember1","");
+			m1.request("111", 0);
+			m1.request("222",2);
+
 		}
 }

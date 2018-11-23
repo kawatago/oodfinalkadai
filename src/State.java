@@ -11,8 +11,6 @@ public abstract class State {
 
 	public abstract void rentBook(String isbn, Booklist booklist);
 
-	public abstract void request(String isbn, Booklist booklist);
-
 	public String h_searchBook(String isbn, Booklist booklist){//IDで検索
 		if(booklist.containsKeytitleList(isbn)){
 			return "match >>> "+ booklist.getTitleList(isbn) + " at " + booklist.getAddressList(isbn)+"\n";
@@ -112,5 +110,9 @@ public abstract class State {
 		this.name = name;
 		this.address = address;
 	}
+	public void requestBook(String isbn, Booklist booklist){
+		booklist.addrequestList(isbn);
+	}
+
 
 }
