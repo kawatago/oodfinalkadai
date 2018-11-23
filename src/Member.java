@@ -1,35 +1,19 @@
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Member {
 
-	/** 
-	 * @uml.property name="state"
-	 * @uml.associationEnd aggregation="shared" inverse="member:State"
-	 */
-	private State state;
+	private List<State> status_list;
+	private Booklist booklist;
 
-	/** 
-	 * Getter of the property <tt>state</tt>
-	 * @return  Returns the state.
-	 * @uml.property  name="state"
-	 */
-	public State getState() {
-		return state;
-	}
-
-	/** 
-	 * Setter of the property <tt>state</tt>
-	 * @param state  The state to set.
-	 * @uml.property  name="state"
-	 */
-	public void setState(State state) {
-		this.state = state;
+	public void setState() {//会員を扱うリストのインスタンスをつくる
+		this.status_list = new ArrayList<State>();
 	}
 
 	/**
 	 * @uml.property  name="name"
 	 */
-	private String name;
+	private String temp_name;//これをStateに渡す
 
 	/**
 	 * Getter of the property <tt>name</tt>
@@ -37,7 +21,7 @@ public class Member {
 	 * @uml.property  name="name"
 	 */
 	public String getName() {
-		return name;
+		return temp_name;
 	}
 
 	/**
@@ -46,13 +30,13 @@ public class Member {
 	 * @uml.property  name="name"
 	 */
 	public void setName(String name) {
-		this.name = name;
+		this.temp_name = name;
 	}
 
 	/**
 	 * @uml.property  name="address"
 	 */
-	private String address;
+	private String temp_address;
 
 	/**
 	 * Getter of the property <tt>address</tt>
@@ -60,7 +44,7 @@ public class Member {
 	 * @uml.property  name="address"
 	 */
 	public String getAddress() {
-		return address;
+		return temp_address;
 	}
 
 	/**
@@ -69,14 +53,12 @@ public class Member {
 	 * @uml.property  name="address"
 	 */
 	public void setAddress(String address) {
-		this.address = address;
+		this.temp_address = address;
 	}
 
 		
 		/**
 		 */
-		public void setStatus(){
-		}
 
 		/**
 		 * @uml.property  name="currentStatus"
@@ -115,37 +97,14 @@ public class Member {
 			return currentState;
 		}
 
-		/**
-		 * Setter of the property <tt>currentState</tt>
-		 * @param currentState  The currentState to set.
-		 * @uml.property  name="currentState"
-		 */
-		public void setCurrentState(State currentState) {
-			this.currentState = currentState;
-		}
-
-		/**
-		 * @uml.property  name="state1"
-		 * @uml.associationEnd  aggregation="shared" inverse="member:State"
-		 */
-		private State state1;
-
-		/**
-		 * Getter of the property <tt>state1</tt>
-		 * @return  Returns the state1.
-		 * @uml.property  name="state1"
-		 */
-		public State getState1() {
-			return state1;
-		}
-
-		/**
-		 * Setter of the property <tt>state1</tt>
-		 * @param state1  The state1 to set.
-		 * @uml.property  name="state1"
-		 */
-		public void setState1(State state1) {
-			this.state1 = state1;
+		public void setCurrentState(String name, String address) {
+			if((address).indexOf("大岡山")<0){
+				this.currentState = new Normal(name, address);//コンストラクタにname, addressを設定させる
+				System.out.println("register as Normal");
+			}else{
+				this.currentState = new Premium(name, address);
+				System.out.println("register as Premium");
+			}
 		}
 
 		/**
@@ -178,27 +137,59 @@ public class Member {
 		 */
 		private Staffhead staffhead;
 
-		/**
-		 * Getter of the property <tt>staffhead</tt>
-		 * @return  Returns the staffhead.
-		 * @uml.property  name="staffhead"
-		 */
-		public Staffhead getStaffhead() {
-			return staffhead;
-		}
-
-		/**
-		 * Setter of the property <tt>staffhead</tt>
-		 * @param staffhead  The staffhead to set.
-		 * @uml.property  name="staffhead"
-		 */
-		public void setStaffhead(Staffhead staffhead) {
-			this.staffhead = staffhead;
-		}
 
 		/**
 		 * @uml.property  name="test"
 		 * @uml.associationEnd  aggregation="shared" inverse="member:test"
 		 */
+		public Member(){//コンストラクタ
+			setState();//stateリストのインスタンスを作るだけ
+			staffhead = new Staffhead();//職員と館長は一人ずつ
+			staff = new Staff();
+			booklist = new Booklist();
 
+			/*
+			* 初期状態としていくつか本を登録しておく
+			 */
+			booklist.setBookToList("1", 111l, 1, "one");
+			booklist.setBookToList("2", 112l, 1, "two");
+			booklist.setBookToList("3", 113l, 1, "thr");
+			System.out.println("initial booklist state \n1:"+ booklist.getTitleList("1")+
+					"\n2:" + booklist.getTitleList("2")+
+					"\n3:" + booklist.getTitleList("3"));
+		}
+		/*
+		* staff.returnbook()には、本を借りていた人を表すクラスのインスタンスを渡さなければいけない
+		* そこで、statuslistの順番をidとみなし、idから対応するクラスを返すメソッドを定義する
+		 */
+		private State IDtoPerson(int id){
+			return status_list.get(id);
+		}
+		private void rent(String isbn, int id){
+			State state = IDtoPerson(id);
+			System.out.println("user:"+state.getName());
+			state.rentBook(isbn,booklist);
+		}
+		private int return_process(String isbn, int id){
+			return staff.returnbook(isbn, IDtoPerson(id), booklist);
+		}
+
+		//addMemberでリストに新しいメンバーを追加し、ステータスを設定
+		public void addMember(String Name, String Address){//新しい会員を登録する
+			temp_name = Name;
+			temp_address = Address;
+			setCurrentState(temp_name, temp_address);
+			//currentStateをStateリストに追加する
+			status_list.add(this.currentState);
+		}
+
+		public static void main(String[] args){
+			Member m1 = new Member();
+			m1.addMember("sample1", "tokyo");//会員1を追加
+			m1.addMember("sample2", "tokyo");//会員2を追加
+			m1.rent("1", 0);//id:0の人がisbn:1の本を借りる
+			m1.rent("1", 1);//id:1の人がisbn:1の本を借り(ようとす)る
+			m1.return_process("1", 0);//返却時に当人が会員証を持ってカウンターにいる
+			m1.rent("1", 1);//id:1の人がisbn:1の本を借りる
+		}
 }

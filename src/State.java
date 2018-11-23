@@ -1,14 +1,19 @@
 
 
 public abstract class State {
-
+	private String name;
+	public String getName(){
+		return name;
+	}
+	private String address;
 	private int rentlimit;
-	//public abstract void returnRentlimit();
+	public abstract void returnRentlimit();
 
-	public abstract void rentBook(Long isbn, Booklist booklist);
+	public abstract void rentBook(String isbn, Booklist booklist);
 
+	public abstract void request(String isbn, Booklist booklist);
 
-	public String h_searchBook(Long isbn, Booklist booklist){//IDで検索
+	public String h_searchBook(String isbn, Booklist booklist){//IDで検索
 		if(booklist.containsKeytitleList(isbn)){
 			return "match >>> "+ booklist.getTitleList(isbn) + " at " + booklist.getAddressList(isbn)+"\n";
 		}
@@ -101,8 +106,11 @@ public abstract class State {
 			 * @param fine  The fine to set.
 			 * @uml.property  name="fine"
 			 */
-			public void setFine(int fine) {
-				this.fine = fine;
-			}
+			public abstract void setFine(int fine);
+
+	public State(String name, String address){
+		this.name = name;
+		this.address = address;
+	}
 
 }

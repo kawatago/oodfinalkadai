@@ -11,29 +11,30 @@ public class Booklist {
 		/**
 		 * @uml.property  name="requestList"
 		 */
-		protected List<Long> requestList = new ArrayList<Long>();//館長が見る用
-		protected List<Long> haveList = new ArrayList<Long>();//現在図書館が所持している本
+		protected List<String> requestList = new ArrayList<String>();//館長が見る用isbnコードのみを持つ
+//		protected List<Long> haveList = new ArrayList<Long>();//現在図書館が所持している本
 	//↑のマップはタイトルリストで十分？
-		public Booklist(){
-			
+
+	protected Map<String, Long> addressList = new HashMap<String, Long>();
+	protected Map<String, Integer> stockList = new HashMap<String, Integer>();
+	protected Map<String, String> titleList = new HashMap<String, String>();//ISBNとタイトル
+	protected Map<String, Calendar> deadlineList = new HashMap<String, Calendar>();//ISBNと返却期日
+
+	public void setBookToList(String isbn, Long address, Integer stock, String title){//新しくリストに追加する
+			addressList.put(isbn, address);
+			stockList.put(isbn, stock);//前提：stockは常に1
+			titleList.put(isbn, title);
 		}
 
 		/**
 		 * @uml.property  name="StockList"
 		 */
-		protected Map<Long, Long> addressList = new HashMap<Long, Long>();
-		protected Map<Long, Integer> stockList = new HashMap<Long, Integer>();
-		protected Map<Long, String> titleList = new HashMap<Long, String>();//ISBNとタイトル
-		protected Map<Long, Calendar> deadlineList = new HashMap<Long, Calendar>();//ISBNと返却期日
 
-	public boolean containsKeydeadlineList(Long isbn){//staffから使う
-		if (!deadlineList.containsKey(isbn)){
-			return false;
-		}
-		return true;
+	public boolean containsKeydeadlineList(String isbn){//staffから使う
+		return deadlineList.containsKey(isbn);
 	}
 
-	public boolean containsKeytitleList(Long isbn){//searchのとき使う
+	public boolean containsKeytitleList(String isbn){//searchのとき使う
 		if (!titleList.containsKey(isbn)){
 			return false;
 		}
@@ -41,36 +42,41 @@ public class Booklist {
 	}
 
 
-	public Calendar getdeadlineList(Long isbn){
+	public Calendar getdeadlineList(String isbn){
 		return deadlineList.get(isbn);
 	}
 
-	public String getTitleList(Long isbn){
+	public String getTitleList(String isbn){
 		return titleList.get(isbn);
 	}
 
-	public String getAddressList(Long isbn){
+	public String getAddressList(String isbn){
 		return  String.valueOf(addressList.get(isbn));
 	}
 
-	public void removedeadlineList(Long isbn){
+	public void removedeadlineList(String isbn){
 		deadlineList.remove(isbn);
 	}
 
-	public int getStockList(Long isbn){//Stocklistが1ならほんは未貸し出し
+	public int getStockList(String isbn){//Stocklistが1ならほんは未貸し出し
 		return stockList.get(isbn);
 	}
 
-	public void operateStockList(Long isbn, int i){
+	public void operateStockList(String isbn, int i){
 		int temp = stockList.get(isbn);
 		stockList.put(isbn, temp + i);
+		System.out.println("result:"+ stockList.get(isbn));
 	}
 
-	public void addDeadlineList(Long isbn, int offset){
+	public void addDeadlineList(String isbn, int offset){
 		Calendar rental_date = Calendar.getInstance();
 		rental_date.add(Calendar.DATE,offset);
 		//deadlineに追加
 		deadlineList.put(isbn,rental_date);
+		System.out.println("deadline is:" + deadlineList.get(isbn));
+	}
+	public void addrequestList(String isbn){
+		requestList.add(isbn);
 	}
 
 }

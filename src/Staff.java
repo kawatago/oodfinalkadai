@@ -30,7 +30,7 @@ public class Staff  {
 
 	/**
 	 */
-	public int returnbook(long isbn, State rt_person, Booklist booklist){
+	public int returnbook(String isbn, State rt_person, Booklist booklist){
 		//ここで返却手続き
 		//Booklistのdeadline＜Long, Long＞を扱う
 		//Booklist<Long, Date>
@@ -42,7 +42,9 @@ public class Staff  {
 				rt_person.setFine(fine_val);//期限オーバーしているとき、超過料金をユーザのインスタンスに付与（加算）
 			}
 			booklist.removedeadlineList(isbn);
+			booklist.operateStockList(isbn, 1);//stocklistをもとにもどす
 			rt_person.returnRentlimit();
+			System.out.println("process has done");
 		}
 		return 0;
 	}

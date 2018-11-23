@@ -5,7 +5,7 @@ public class Nonmember extends State {
 	/**
 	 * @uml.property  name="rentlimit"
 	 */
-	private int rentlimit;
+	private int rentlimit = 0;
 
 	/**
 	 * Getter of the property <tt>rentlimit</tt>
@@ -25,6 +25,12 @@ public class Nonmember extends State {
 		this.rentlimit = rentlimit;
 	}
 
+
+	//返却が完了したときにStaffから呼び出される
+	//前提：本は一冊ずつ返す
+	public void returnRentlimit(){
+		System.out.println("error");
+	}
 	/**
 	 * @uml.property  name="deadline"
 	 */
@@ -49,9 +55,9 @@ public class Nonmember extends State {
 	}
 
 	/**
-	 * @uml.property  name="fine" readOnly="true"
+	 * @uml.property  name="fine"
 	 */
-	private final int fine = 0;
+	private int fine = 0;
 
 	/**
 	 * Getter of the property <tt>fine</tt>
@@ -60,6 +66,30 @@ public class Nonmember extends State {
 	 */
 	public int getFine() {
 		return fine;
+	}
+
+	/**
+	 * Setter of the property <tt>fine</tt>
+	 * @param fine  The fine to set.
+	 * @uml.property  name="fine"
+	 */
+	public void setFine(int fine) {
+		this.fine += fine;
+	}//一応積算される
+	public void resetFine(){this.fine = 0;	}//全部払った
+
+	@Override
+	public void rentBook(String isbn, Booklist booklist) {
+		System.out.println("error\n");//会員でないので借りることはできない（そもそも呼び出されない？）
+	}
+
+	public void request(String isbn, Booklist booklist){
+		booklist.addrequestList(isbn);
+	}
+
+	//コンストラクタ（スーパークラスのコンストラクタを呼び出す）
+	public Nonmember(String name, String address){
+		super("", "");//登録はしていない
 	}
 
 }
