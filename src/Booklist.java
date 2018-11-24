@@ -82,4 +82,10 @@ public class Booklist {
 		System.out.println("added:"+requestList.get(requestList.size()-1));
 	}
 
+	public void showRequestList(){
+		System.out.println("requestList state:");
+		for (Iterator it = requestList.iterator(); it.hasNext();){
+			System.out.println(it.next());
+		}
+	}
 }

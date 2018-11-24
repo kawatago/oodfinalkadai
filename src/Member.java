@@ -101,6 +101,9 @@ public class Member {
 			if((address).indexOf("大岡山")<0){
 				this.currentState = new Normal(name, address);//コンストラクタにname, addressを設定させる
 				System.out.println("register as Normal");
+			}else if(address.equals("")){
+				this.currentState = new Nonmember(name, address);
+				System.out.println("register as Nonmember");
 			}else{
 				this.currentState = new Premium(name, address);
 				System.out.println("register as Premium");
@@ -177,7 +180,11 @@ public class Member {
 			State state = IDtoPerson(id);
 			System.out.println("user:"+ state.getName());
 			state.requestBook(isbn,booklist);
+			booklist.showRequestList();
 		}
+/*		public void purchase(){
+
+		}*/
 
 		//addMemberでリストに新しいメンバーを追加し、ステータスを設定
 		public void addMember(String Name, String Address){//新しい会員を登録する
@@ -192,15 +199,20 @@ public class Member {
 			Member m1 = new Member();
 			m1.addMember("sample1", "tokyo");//会員1を追加
 			m1.addMember("sample2", "tokyo");//会員2を追加
+			m1.addMember("nonmember1","");//会員登録していないアクター
+			m1.addMember("premium1", "大岡山1");//大岡山会員を追加
 			//同じ本は借りれない
 //			m1.rent("1", 0);//id:0の人がisbn:1の本を借りる
 //			m1.rent("1", 1);//id:1の人がisbn:1の本を借り(ようとす)る
 //			m1.return_process("1", 0);//返却時に当人が会員証を持ってカウンターにいる
 //			m1.rent("1", 1);//id:1の人がisbn:1の本を借りる
 			//リクエストはだれでもできる
-			m1.addMember("nonmember1","");
-			m1.request("111", 0);
-			m1.request("222",2);
+			m1.request("111", 0);//会員1が111をリクエスト
+			m1.request("222",2);//非会員1が222をリクエスト
+			m1.request("333", 3);//大岡山会員が333をリクエスト
+			//館長による購入処理
+			m1.purchase();
+
 
 		}
 }

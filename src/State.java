@@ -6,7 +6,7 @@ public abstract class State {
 		return name;
 	}
 	private String address;
-	private int rentlimit;
+	private int rentlimit = 0;
 	public abstract void returnRentlimit();
 
 	public abstract void rentBook(String isbn, Booklist booklist);
