@@ -48,5 +48,8 @@ public class Staff  {
 		}
 		return 0;
 	}
+	public void purchasebook(Booklist booklist, int id){
+		System.out.println("error at Staff.purchasebook");
+	}
 
 }

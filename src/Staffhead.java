@@ -29,7 +29,8 @@ public class Staffhead extends Staff {
 		
 		/**
 		 */
-		public void purchasebook(){
-		}
+	public void purchasebook(Booklist booklist, int numOfPurchase){
+		booklist.purchasefromList(numOfPurchase);//booklist 内のメソッドで購入を済ませる
+	}
 
 }

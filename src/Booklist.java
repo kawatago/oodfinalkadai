@@ -1,8 +1,9 @@
 import java.util.*;
 
 public class Booklist {
-
-		
+//前提：何も指定しなければ新しい本はadresstail+1のアドレスに収納される
+		private long address_tail;//アドレスの最後尾
+		private List<String> delete_list = new ArrayList<String>();
 		/**
 		 */
 		public void operateBookList(){
@@ -11,7 +12,7 @@ public class Booklist {
 		/**
 		 * @uml.property  name="requestList"
 		 */
-		protected List<String> requestList = new ArrayList<String>();//館長が見る用isbnコードのみを持つ
+//		protected List<String> requestList = new ArrayList<String>();//館長が見る用isbnコードのみを持つ
 //		protected List<Long> haveList = new ArrayList<Long>();//現在図書館が所持している本
 	//↑のマップはタイトルリストで十分？
 
@@ -19,11 +20,13 @@ public class Booklist {
 	protected Map<String, Integer> stockList = new HashMap<String, Integer>();
 	protected Map<String, String> titleList = new HashMap<String, String>();//ISBNとタイトル
 	protected Map<String, Calendar> deadlineList = new HashMap<String, Calendar>();//ISBNと返却期日
+	protected Map<String, String> requestList = new HashMap<String, String>();//館長が見る用isbnとタイトルを持つ
 
 	public void setBookToList(String isbn, Long address, Integer stock, String title){//新しくリストに追加する
 			addressList.put(isbn, address);
 			stockList.put(isbn, stock);//前提：stockは常に1
 			titleList.put(isbn, title);
+			address_tail++;//次に追加すべきアドレス（館長の購入などではこのアドレスで収納される）
 		}
 
 		/**
@@ -72,20 +75,64 @@ public class Booklist {
 	public void addDeadlineList(String isbn, int offset){
 		Calendar rental_date = Calendar.getInstance();
 		System.out.println("today is " + rental_date.get(Calendar.DATE));
-		rental_date.add(Calendar.DATE,offset);
+		rental_date.add(Calendar.DATE,offset);//ステータスに応じた返却期日を加算する
 		//deadlineに追加
 		deadlineList.put(isbn,rental_date);
 		System.out.println("deadline is:" + rental_date.get(Calendar.DATE));
 	}
-	public void addrequestList(String isbn){
-		requestList.add(isbn);
-		System.out.println("added:"+requestList.get(requestList.size()-1));
+	public void addrequestList(String isbn, String title){//タイトルまで入力してもらう
+		System.out.println("bef add:");
+		showRequestList();
+		requestList.put(isbn, title);
+		System.out.println("aft add:");
+		showRequestList();
 	}
-
+	public void showTitleList(){
+		System.out.println("titleList state:");
+		for (Iterator<Map.Entry<String, String>> iterator = titleList.entrySet().iterator(); iterator.hasNext();){
+			Map.Entry<String, String> entry = iterator.next();
+			System.out.println(entry.getKey()+":"+entry.getValue());
+		}
+	}
 	public void showRequestList(){
 		System.out.println("requestList state:");
-		for (Iterator it = requestList.iterator(); it.hasNext();){
-			System.out.println(it.next());
+		for (Iterator<Map.Entry<String, String>> iterator = requestList.entrySet().iterator(); iterator.hasNext();){
+			Map.Entry<String, String> entry = iterator.next();
+			System.out.println(entry.getKey()+":"+entry.getValue());
+		}
+
+	}
+	public void purchasefromList(int numOfPurchase){//numOfPurchase分だけリクエストリストから購入する
+		//処理前のrequestlistを表示する
+		System.out.println("bef purchase");
+		showRequestList();
+		showTitleList();
+
+		for (Iterator<Map.Entry<String, String>> iterator = requestList.entrySet().iterator(); iterator.hasNext();){
+			if(numOfPurchase<0){break;}
+			Map.Entry<String, String> entry = iterator.next();
+			System.out.println(entry.getKey()+":"+entry.getValue()+ "is purchased");
+			setBookToList(entry.getKey(), address_tail, 1, entry.getValue());//新しい本を各種リストに追加
+			//リクエストリストから消去するため、新しいリストにキーを追加しておく
+			delete_list.add(entry.getKey());//delete_listにあるキーのまっプを消去するメソッドdelete_entryをつくる
+			numOfPurchase--;
+		}
+		deleteEntry("request");
+		//処理後のrequestlistを表示する
+		System.out.println("aft purchase");
+		showRequestList();
+		showTitleList();
+	}
+	//指定したリストのエントリをすべて削除するメソッド
+	public void deleteEntry(String select_list){
+		if(select_list.equals("request")){
+			for (int i = 0 ; i < delete_list.size();i++){
+				requestList.remove(delete_list.get(i));//delete_listに入っているキーを削除
+			}
+		}else if(select_list.equals("stock")){
+			for (int i = 0 ; i < delete_list.size();i++){
+				stockList.remove(delete_list.get(i));//delete_listに入っているキーを削除
+			}
 		}
 	}
 }

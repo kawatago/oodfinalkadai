@@ -110,8 +110,8 @@ public abstract class State {
 		this.name = name;
 		this.address = address;
 	}
-	public void requestBook(String isbn, Booklist booklist){
-		booklist.addrequestList(isbn);
+	public void requestBook(String isbn, String title, Booklist booklist){
+		booklist.addrequestList(isbn,title);
 	}
 
 
