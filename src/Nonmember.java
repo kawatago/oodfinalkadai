@@ -15,7 +15,7 @@ public class Nonmember extends State {
 
 	@Override
 	public void rentBook(String isbn, Booklist booklist) {
-		System.out.println("error\n");//会員でないので借りることはできない（そもそも呼び出されない？）
+		System.out.println("error at Nonmember.rentBook");//会員でないので借りることはできない（そもそも呼び出されない？）
 	}
 
 	//コンストラクタ（スーパークラスのコンストラクタを呼び出す）

@@ -4,10 +4,6 @@
     <list default="true" id="a2ca46a3-5458-4eb4-9445-892ddd9a3a8a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Member.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Nonmember.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Nonmember.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Normal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Normal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Premium.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Premium.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/State.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,12 +34,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="11246" />
+          <entry key="java" value="11482" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="11246" />
+          <entry key="JAVA" value="11482" />
         </counts>
       </usages-collector>
     </session>
@@ -114,11 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Member.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="243" column="41" lean-forward="true" selection-start-line="243" selection-start-column="41" selection-end-line="243" selection-end-column="41" />
+            <state relative-caret-position="-207">
+              <caret line="247" column="35" selection-start-line="247" selection-start-column="35" selection-end-line="247" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#123#130#0" expanded="true" />
@@ -138,11 +134,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Nonmember.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+            <state relative-caret-position="183">
+              <caret line="17" column="55" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
               <folding>
                 <element signature="e#150#151#0" expanded="true" />
                 <element signature="e#184#185#0" expanded="true" />
@@ -248,10 +244,10 @@
         <option value="$PROJECT_DIR$/src/Staff.java" />
         <option value="$PROJECT_DIR$/src/Person.java" />
         <option value="$PROJECT_DIR$/src/State.java" />
-        <option value="$PROJECT_DIR$/src/Nonmember.java" />
         <option value="$PROJECT_DIR$/src/Premium.java" />
         <option value="$PROJECT_DIR$/src/Normal.java" />
         <option value="$PROJECT_DIR$/src/Member.java" />
+        <option value="$PROJECT_DIR$/src/Nonmember.java" />
       </list>
     </option>
   </component>
@@ -286,7 +282,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543150250221" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543150861774" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -453,19 +449,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Nonmember.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-          <folding>
-            <element signature="e#150#151#0" expanded="true" />
-            <element signature="e#184#185#0" expanded="true" />
-            <element signature="e#334#335#0" expanded="true" />
-            <element signature="e#358#359#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Premium.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -490,8 +473,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Member.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="243" column="41" lean-forward="true" selection-start-line="243" selection-start-column="41" selection-end-line="243" selection-end-column="41" />
+        <state relative-caret-position="-207">
+          <caret line="247" column="35" selection-start-line="247" selection-start-column="35" selection-end-line="247" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#123#130#0" expanded="true" />
@@ -506,6 +489,19 @@
             <element signature="e#3958#3959#0" expanded="true" />
             <element signature="e#4030#4031#0" expanded="true" />
             <element signature="e#4094#4095#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Nonmember.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="17" column="55" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
+          <folding>
+            <element signature="e#150#151#0" expanded="true" />
+            <element signature="e#184#185#0" expanded="true" />
+            <element signature="e#334#335#0" expanded="true" />
+            <element signature="e#358#359#0" expanded="true" />
           </folding>
         </state>
       </provider>

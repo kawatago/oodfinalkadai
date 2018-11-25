@@ -243,6 +243,10 @@ public class Member {
 		}
 		status_list.set(id, state);//IDは変わらない
 	}
+	public void unregister(int id){
+		State state = new Nonmember("","");
+		status_list.set(id, state);
+	}
 	public static void main(String[] args){
 			Member m1 = new Member();
 			m1.addMember("sample1", "tokyo");//会員1を追加
@@ -269,5 +273,8 @@ public class Member {
 			m1.isbnSearch("222", 0);//会員１が111の検索
 			//会員情報の変更
 			m1.setting("_sample1", "大岡山", 0);//会員1が設定を変更、premiumクラスになる
+			m1.unregister(0);//会員1が退会してNonmemberクラスに
+			m1.rent("1", 0);//非会員１（元会員１）がほんを借りようとする
+
 		}
 }
