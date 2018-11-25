@@ -102,9 +102,24 @@ public class Booklist {
 		}
 
 	}
+
+	public void deletefromList(String isbn){
+		System.out.println("bef delete:");
+		showTitleList();
+		if(titleList.containsKey(isbn)){
+			System.out.println(titleList.get(isbn)+"is deleted.");
+			titleList.remove(isbn);
+			stockList.remove(isbn);
+			addressList.remove(isbn);
+		}else{
+			System.out.println("Not Exist");
+		}
+		showTitleList();
+	}
+
 	public void purchasefromList(int numOfPurchase){//numOfPurchase分だけリクエストリストから購入する
 		//処理前のrequestlistを表示する
-		System.out.println("bef purchase");
+		System.out.println("bef purchase:");
 		showRequestList();
 		showTitleList();
 

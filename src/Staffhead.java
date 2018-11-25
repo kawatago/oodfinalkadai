@@ -32,5 +32,8 @@ public class Staffhead extends Staff {
 	public void purchasebook(Booklist booklist, int numOfPurchase){
 		booklist.purchasefromList(numOfPurchase);//booklist 内のメソッドで購入を済ませる
 	}
+	public void deletebook(Booklist booklist, String isbn){
+		booklist.deletefromList(isbn);
+	}
 
 }

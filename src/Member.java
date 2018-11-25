@@ -211,6 +211,12 @@ public class Member {
 		}
 	}
 
+	//指定したisbnで本をリストから削除する
+	public void delete(String isbn , int id){
+		Staff staff = IDtoStaff(id);
+		staff.deletebook(booklist,isbn);
+	}
+
 	public static void main(String[] args){
 			Member m1 = new Member();
 			m1.addMember("sample1", "tokyo");//会員1を追加
@@ -230,6 +236,9 @@ public class Member {
 			m1.request("333","req_thr",  3);//大岡山会員が333をリクエスト
 			//館長による購入処理
 			m1.purchase(2, 1);//館長が二つ購入
+			m1.delete("111", 1);//館長がタイトル111の本を消去
+			m1.delete("222", 0);//職員がタイトル222の本を消去しようとする
+
 
 
 		}

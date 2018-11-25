@@ -51,5 +51,12 @@ public class Staff  {
 	public void purchasebook(Booklist booklist, int id){
 		System.out.println("error at Staff.purchasebook");
 	}
+	public void deletebook(Booklist booklist, String isbn){
+		System.out.println("bef delete:");
+		booklist.showTitleList();
+		System.out.println("error at Staff.deletebook");
+		System.out.println("aft delete:");
+		booklist.showTitleList();
+	}
 
 }
