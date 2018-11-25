@@ -7,6 +7,7 @@ public class Normal extends Person {
 	//コンストラクタ（スーパークラスのコンストラクタを呼び出す）
 	public Normal(String name, String address){
 		super(name, address);
+		System.out.println(name + "register as Normal");
 	}
 
 	//返却が完了したときにStaffから呼び出される

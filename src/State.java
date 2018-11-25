@@ -5,6 +5,15 @@ public abstract class State {
 	public String getName(){
 		return name;
 	}
+	public void setName(String name){//名前の変更,setting(name, address)から呼び出す
+		this.name = name;
+	}
+	public void setAdress(String address){//名前の変更,setting(name, address)から呼び出す
+		this.address = address;
+	}
+	public String getAddress(){
+		return this.address;
+	}
 	private String address;
 	private int rentlimit = 0;
 	public abstract void returnRentlimit();

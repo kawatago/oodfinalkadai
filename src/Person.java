@@ -5,6 +5,8 @@ public abstract class Person extends State {//こいつも抽象クラス
     public abstract void returnRentlimit();
     public abstract void rentBook(String isbn, Booklist booklist);
 
+
+
     public int getRentlimit() {
         return rentlimit;
     }

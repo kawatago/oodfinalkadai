@@ -99,10 +99,10 @@ public class Member {
 	public void setCurrentState(String name, String address) {
 		if((address).indexOf("大岡山")<0){
 			this.currentState = new Normal(name, address);//コンストラクタにname, addressを設定させる
-			System.out.println("register as Normal");
+
 		}else if(address.equals("")){
 			this.currentState = new Nonmember(name, address);
-			System.out.println("register as Nonmember");
+
 		}else{
 			this.currentState = new Premium(name, address);
 			System.out.println("register as Premium");
@@ -196,6 +196,7 @@ public class Member {
 		setCurrentState(temp_name, temp_address);
 		//currentStateをStateリストに追加する
 		status_list.add(this.currentState);
+		System.out.println(status_list);
 	}
 
 	//addMemberでリストに新しいメンバーを追加し、ステータスを設定
@@ -221,7 +222,27 @@ public class Member {
 		State state = IDtoPerson(id);
 		System.out.println(state.h_searchBook(isbn, booklist));
 	}
+	public void setting(String name, String address, int id){
+		State state = IDtoPerson(id);
+		if(address.equals("")){
+			state = new Nonmember("","");
+		}
+		if(state.getAddress().indexOf("大岡山") >= 0){
+			if(address.indexOf("大岡山") >= 0){
+				state.setAdress(address);
+			}else{
+				state = new Normal(name, address);
+			}
 
+		}else{
+			if(address.indexOf("大岡山") >= 0){
+				state = new Premium(name, address);
+			}else{
+				state.setAdress(address);
+			}
+		}
+		status_list.set(id, state);//IDは変わらない
+	}
 	public static void main(String[] args){
 			Member m1 = new Member();
 			m1.addMember("sample1", "tokyo");//会員1を追加
@@ -246,7 +267,7 @@ public class Member {
 		    //本の検索
 			m1.isbnSearch("111", 0);//会員１が111の検索(消去済み)
 			m1.isbnSearch("222", 0);//会員１が111の検索
-
-
+			//会員情報の変更
+			m1.setting("_sample1", "大岡山", 0);//会員1が設定を変更、premiumクラスになる
 		}
 }

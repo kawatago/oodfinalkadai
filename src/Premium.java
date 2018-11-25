@@ -7,6 +7,7 @@ public class Premium extends Person {
 	//コンストラクタ（スーパークラスのコンストラクタを呼び出す）
 	public Premium(String name, String address){
 		super(name, address);
+		System.out.println(name + "register as Premium");
 	}
 
 	//返却が完了したときにStaffから呼び出される
