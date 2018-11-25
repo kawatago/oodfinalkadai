@@ -216,6 +216,11 @@ public class Member {
 		Staff staff = IDtoStaff(id);
 		staff.deletebook(booklist,isbn);
 	}
+	//isbnを指定して本を検索
+	public void isbnSearch(String isbn , int id){
+		State state = IDtoPerson(id);
+		System.out.println(state.h_searchBook(isbn, booklist));
+	}
 
 	public static void main(String[] args){
 			Member m1 = new Member();
@@ -238,7 +243,9 @@ public class Member {
 			m1.purchase(2, 1);//館長が二つ購入
 			m1.delete("111", 1);//館長がタイトル111の本を消去
 			m1.delete("222", 0);//職員がタイトル222の本を消去しようとする
-
+		    //本の検索
+			m1.isbnSearch("111", 0);//会員１が111の検索(消去済み)
+			m1.isbnSearch("222", 0);//会員１が111の検索
 
 
 		}
