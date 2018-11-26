@@ -67,9 +67,9 @@ public class Booklist {
 
 	public void operateStockList(String isbn, int i){
 		int temp = stockList.get(isbn);
-		System.out.println("before:"+ stockList.get(isbn));
+		System.out.println("before"+isbn+":"+ stockList.get(isbn));
 		stockList.put(isbn, temp + i);
-		System.out.println("after:"+ stockList.get(isbn));
+		System.out.println("after"+isbn+":"+ stockList.get(isbn));
 	}
 
 	public void addDeadlineList(String isbn, int offset){

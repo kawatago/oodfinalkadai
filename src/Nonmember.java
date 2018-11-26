@@ -21,7 +21,7 @@ public class Nonmember extends State {
 	//コンストラクタ（スーパークラスのコンストラクタを呼び出す）
 	public Nonmember(String name, String address){
 		super("", "");//登録はしていない
-		System.out.println("register as Nonmember");
+		System.out.println(" register as Nonmember");
 	}
 
 }

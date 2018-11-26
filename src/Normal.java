@@ -7,7 +7,7 @@ public class Normal extends Person {
 	//コンストラクタ（スーパークラスのコンストラクタを呼び出す）
 	public Normal(String name, String address){
 		super(name, address);
-		System.out.println(name + "register as Normal");
+		System.out.println(name + " register as Normal");
 	}
 
 	//返却が完了したときにStaffから呼び出される
@@ -18,7 +18,7 @@ public class Normal extends Person {
 	public void rentBook(String isbn, Booklist booklist) {
 		if (booklist.getStockList(isbn) != 0){//Stocklistが1ならほんは未貸し出し
 			booklist.operateStockList(isbn,-1);//Stocklistの対応するキーを１減らす
-			booklist.addDeadlineList(isbn,this.deadline);//期限を追加
+			booklist.addDeadlineList(isbn,deadline);//期限を追加
 			System.out.println("isbn:"+isbn +"\nrentBook has done.");
 		}
 		else {

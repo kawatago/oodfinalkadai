@@ -25,7 +25,7 @@ public abstract class State {
 			return "match >>> "+ booklist.getTitleList(isbn) + " at " + booklist.getAddressList(isbn)+"\n";
 		}
 		else{
-			return "no matches... please request";
+			return "isbn : " + isbn +" >>> no matches... please request";
 		}
 	}
 
@@ -120,6 +120,10 @@ public abstract class State {
 		this.address = address;
 	}
 	public void requestBook(String isbn, String title, Booklist booklist){
+		if(booklist.containsKeytitleList(isbn)){
+			System.out.println(title+"is exist in this library.");
+			System.out.println("In "+ booklist.getAddressList(isbn));
+		}
 		booklist.addrequestList(isbn,title);
 	}
 

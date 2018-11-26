@@ -30,14 +30,17 @@ public class Staff  {
 
 	/**
 	 */
-	public int returnbook(String isbn, State rt_person, Booklist booklist){
+	public void returnbook(String isbn, State rt_person, Booklist booklist){
 		//ここで返却手続き
 		//Booklistのdeadline＜Long, Long＞を扱う
 		//Booklist<Long, Date>
 		//返却ならエントリを消去、貸し出しならエントリを作成
+		System.out.println("bef return ");
 		if (booklist.containsKeydeadlineList(isbn)){//Booklistのインスタンスにisbnキーを持つエントリがあればtrue
 			//日付を取得し,deadline.get(isbn)と比較する
 			Calendar now_date = Calendar.getInstance();
+			System.out.println("deadline is ");
+			System.out.println(booklist.getdeadlineList(isbn));
 			if(now_date.after(booklist.getdeadlineList(isbn))){
 				rt_person.setFine(fine_val);//期限オーバーしているとき、超過料金をユーザのインスタンスに付与（加算）
 			}
@@ -46,7 +49,6 @@ public class Staff  {
 			rt_person.returnRentlimit();
 			System.out.println("process has done");
 		}
-		return 0;
 	}
 	public void purchasebook(Booklist booklist, int id){
 		System.out.println("error at Staff.purchasebook");

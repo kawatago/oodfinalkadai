@@ -105,7 +105,7 @@ public class Member {
 
 		}else{
 			this.currentState = new Premium(name, address);
-			System.out.println("register as Premium");
+			//System.out.println("register as Premium");
 		}
 	}
 
@@ -175,14 +175,15 @@ public class Member {
 		System.out.println("user:"+state.getName());
 		state.rentBook(isbn,booklist);
 	}
-	private int return_process(String isbn, int id){
-		return staff.returnbook(isbn, IDtoPerson(id), booklist);
+	private void return_process(String isbn, int id, int st_id){
+		System.out.println("at Member.return_process");
+		IDtoStaff(st_id).returnbook(isbn, IDtoPerson(id), booklist);
 	}
 	private void request(String isbn, String title, int id){
 		State state = IDtoPerson(id);
 		System.out.println("user:"+ state.getName());
 		state.requestBook(isbn, title, booklist);
-		booklist.showRequestList();
+		//booklist.showRequestList();
 	}
 	public void purchase(int numOfPurchase, int id){
 		Staff staff = IDtoStaff(id);
@@ -205,10 +206,10 @@ public class Member {
 		//staffかstaffheadのインスタンスをStafflistに追加する
 		if(headflag) {
 			stafflist.add(new Staffhead());
-			System.out.println(Name+"is registered as staffhead");
+			System.out.println(Name+" is registered as staffhead");
 		}else{
 			stafflist.add(new Staff());
-			System.out.println(Name+"is registered as staff");
+			System.out.println(Name+" is registered as staff");
 		}
 	}
 
@@ -256,25 +257,26 @@ public class Member {
 			m1.addStaff("staff1", false);//スタッフ1を追加
 			m1.addStaff("head", true);//館長を追加
 			//同じ本は借りれない
-//			m1.rent("1", 0);//id:0の人がisbn:1の本を借りる
-//			m1.rent("1", 1);//id:1の人がisbn:1の本を借り(ようとす)る
-//			m1.return_process("1", 0);//返却時に当人が会員証を持ってカウンターにいる
-//			m1.rent("1", 1);//id:1の人がisbn:1の本を借りる
+			m1.rent("1", 0);//id:0の人がisbn:1の本を借りる
+			m1.rent("1", 1);//id:1の人がisbn:1の本を借り(ようとす)る
+			m1.return_process("1", 0, 0);//返却時に当人が会員証を持ってカウンターにいる
+			m1.rent("1", 1);//id:1の人がisbn:1の本を借りる
 			//リクエストはだれでもできる
-			m1.request("111", "req_one",0);//会員1が111をリクエスト
-			m1.request("222","req_two", 2);//非会員1が222をリクエスト
-			m1.request("333","req_thr",  3);//大岡山会員が333をリクエスト
+//			m1.request("111", "req_one",0);//会員1が111をリクエスト
+//			m1.request("222","req_two", 2);//非会員1が222をリクエスト
+//			m1.request("333","req_thr",  3);//大岡山会員が333をリクエスト
 			//館長による購入処理
-			m1.purchase(2, 1);//館長が二つ購入
-			m1.delete("111", 1);//館長がタイトル111の本を消去
-			m1.delete("222", 0);//職員がタイトル222の本を消去しようとする
+//			m1.purchase(2, 1);//館長が二つ購入
+//    		m1.request("111", "req_one",0);//会員1が111をリクエストしようとする
+//			m1.delete("111", 1);//館長がタイトル111の本を消去
+//			m1.delete("222", 0);//職員がタイトル222の本を消去しようとする
 		    //本の検索
-			m1.isbnSearch("111", 0);//会員１が111の検索(消去済み)
-			m1.isbnSearch("222", 0);//会員１が111の検索
+//			m1.isbnSearch("111", 0);//会員１が111の検索(消去済み)
+//			m1.isbnSearch("222", 0);//会員１が111の検索
 			//会員情報の変更
-			m1.setting("_sample1", "大岡山", 0);//会員1が設定を変更、premiumクラスになる
-			m1.unregister(0);//会員1が退会してNonmemberクラスに
-			m1.rent("1", 0);//非会員１（元会員１）がほんを借りようとする
+//			m1.setting("_sample1", "大岡山", 0);//会員1が設定を変更、premiumクラスになる
+//			m1.unregister(0);//会員1が退会してNonmemberクラスに
+//			m1.rent("1", 0);//非会員１（元会員１）がほんを借りようとする
 
 		}
 }
